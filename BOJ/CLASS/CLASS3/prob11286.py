@@ -11,6 +11,6 @@ for _ in range(N):
         if len(h) == 0:
             print(0)
         else:
-            print(-1*heapq.heappop(h))
-    else: # add
-        heapq.heappush(h, -1*x)
+            print(heapq.heappop(h)[1])
+    else: # tuple로 저장할 시 첫번째 요소로 정렬됨 -> 이후 뒤에 요소로 알아서 정렬됨
+        heapq.heappush(h, (abs(x), x))
