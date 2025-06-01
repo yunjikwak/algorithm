@@ -5,11 +5,10 @@ for _ in range(N):
 
 ans = 1000*1000
 for i in range(N):
-    tmp = 1000*1000
     x1, y1 = position[i]
-    for j in range(i, N):
+    for j in range(i+1, N):
         x2, y2 = position[j]
-        tmp = min(tmp, (x1-x2)^2*(y1-y2)^2)
-    ans = min(ans, tmp)
+        dist2 = (x1 - x2) ** 2 + (y1 - y2) ** 2
+        ans = min(ans, dist2)
 
 print(ans)
