@@ -10,7 +10,8 @@ def get_diff(a, b):
             continue
 
         sum2 = sum(numbers) - sum1 - numbers[i]
-        if sum1 == sum2 or sum1 == i or sum2 == numbers[i]:
+        sum3 = numbers[i]
+        if sum1 == sum2 or sum1 == numbers[i] or sum2 == numbers[i]:
             continue
 
         minVal = min(sum1, sum2, numbers[i])
@@ -21,7 +22,7 @@ def get_diff(a, b):
 
 min_dif = sum(numbers)
 for i in range(N):
-    for j in range(i, N):
+    for j in range(i+1, N):
         min_dif = min(min_dif, get_diff(i, j))
 if min_dif == sum(numbers):
     print(-1)
