@@ -15,8 +15,8 @@ for i in range(N):
             continue
         
         x, y = position[j]
-        max_width = max(max_height, x)
-        min_width = min(min_height, x)
+        max_width = max(max_width, x)
+        min_width = min(min_width, x)
         max_height = max(max_height, y)
         min_height = min(min_height, y)
     
