@@ -23,6 +23,9 @@ for i in range(1, N*M):
     
     x, y = x + dx[dir_num], y + dy[dir_num]
     ascii_num += 1
+    if ascii_num > 90:
+        ascii_num = 65
+
     answer[x][y] = chr(ascii_num)
 
 for i in range(N):
