@@ -2,7 +2,7 @@ import sys
 input = sys.stdin.readline
 
 a = list(input().strip())
-max_val = int(''.join(a), 2)
+max_val = 0
 
 for i in range(len(a)):
     if a[i] == '1':
