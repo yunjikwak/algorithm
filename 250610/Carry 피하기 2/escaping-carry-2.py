@@ -8,8 +8,8 @@ for _ in range(N):
 
 result = -1
 for i in range(N):
-    for j in range(i, N):
-        for k in range(j, N):
+    for j in range(i+1, N):
+        for k in range(j+1, N):
             sum_all = arr[i] + arr[j] + arr[k]
             length = len(str(sum_all))
 
