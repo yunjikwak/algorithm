@@ -18,7 +18,7 @@ for j in arr2:
         lst.append((j + k - 1) % N + 1)
     canB.append(lst)
 
-result += len(canA[0]) * len(canA[1]) * len(canA[2])
+result = len(canA[0]) * len(canA[1]) * len(canA[2])
 result += len(canB[0]) * len(canB[1]) * len(canB[2])
 
 minus = []
@@ -29,5 +29,5 @@ for i in range(3):
             tmp += 1
     minus.append(tmp)
 
-result -= len(minus[0]) * len(minus[1]) * len(minus[2])
+result -= minus[0] * minus[1] * minus[2]
 print(result)
