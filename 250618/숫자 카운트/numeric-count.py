@@ -10,7 +10,7 @@ for idx in range(N):
     for i in range(1, 10):
         for j in range(1, 10):
             for k in range(1, 10):
-                if i == j  and j == k and k == i:
+                if i == j  or j == k or k == i:
                     continue
                 
                 cnt1, cnt2 = 0, 0
