@@ -11,10 +11,13 @@ for _ in range(D):
 sick = [list(map(int, input().split())) for _ in range(S)]
 store = [0] * (M+1)
 
-for num, timing in sick:    
+for num, timing in sick:
+    eatenP = set()
     for chz, t in ate[num]:
         if t < timing:
-            store[chz] += 1
+            eatenP.add(chz)
+    for chz in eatenP:
+        store[chz] += 1
 
 suspect_cheeses = []
 for i in range(1, M + 1):
