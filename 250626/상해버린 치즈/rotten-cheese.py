@@ -18,18 +18,20 @@ for i in range(len(sick)):
     num = sick[i][0]
     timing = sick[i][1]
     
-    for j in range(len(ate[i+1])):
-        chz, t = ate[i+1][j]
+    for chz, t in ate[num]:
         if t < timing:
             store[chz] += 1
 
 result = 0
 
-for i in range(1, N+1):
-    for j in range(len(ate[i])):
-        chz, tmp = ate[i][j]
-        if store[chz] == len(sick):
-            result += 1
-            break
+for chz in range(1, M+1):
+    if store[chz] == len(sick):
+        cnt = 0
+        for i in range(1, N+1):
+            for cheese, _ in ate[i]:
+                if cheese == chz:
+                    cnt += 1
+                    break
+        result = max(result, cnt)
     
 print(result)
