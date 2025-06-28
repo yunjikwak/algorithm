@@ -23,7 +23,7 @@ def get_work(temp, electro):
         return H
 
 result = 0
-for i in range(start, end+1):
+for i in range(start-1, end+1):
     sum_work = 0
     for n in range(N):
         work = get_work(i, n)
