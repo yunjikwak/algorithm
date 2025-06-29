@@ -12,12 +12,12 @@ def search(x):
         add_pos = x+i
         minus_pos = x-i
 
-        if add_pos <= b:
+        if 0 <= add_pos <= 1001:
             if s is None and arr[add_pos] == 'S':
                 s = i
             elif n is None and arr[add_pos] == 'N':
                 n = i
-        if minus_pos >= a:
+        if 0 <= minus_pos <= 1001:
             if s is None and arr[minus_pos] == 'S':
                 s = i
             elif n is None and arr[minus_pos] == 'N':
