@@ -4,7 +4,7 @@ input = sys.stdin.readline
 N = int(input())
 act = [list(map(int, input().split())) for _ in range(N)]
 
-max_score, pos = 0, 0
+max_score = 0
 for i in range(1, 4):
     ans, score = i, 0
     for j in range(N):
@@ -16,7 +16,5 @@ for i in range(1, 4):
         
         if c == ans:
             score += 1
-    if max_score < score:
-        max_score = score
-        pos = i
-print(pos)
+    max_score = max(max_score, score)
+print(max_score)
