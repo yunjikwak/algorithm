@@ -16,10 +16,10 @@ y_start = min(all_y)
 y_end = max(all_y)
 
 result = sys.maxsize
-for i in range(x_start+1, x_end):
+for i in range(x_start-1, x_end+1):
     if i % 2 != 0:
         continue
-    for j in range(y_start+1, y_end):
+    for j in range(y_start-1, y_end+1):
         if j % 2 != 0:
             continue
         a, b, c, d = 0, 0, 0, 0
@@ -30,7 +30,7 @@ for i in range(x_start+1, x_end):
                 b += 1
             elif p[0] < i and p[1] < j:
                 c += 1
-            elif p[0] > i and p[1] > j:
+            elif p[0] > i and p[1] < j:
                 d += 1
-    result = min(result, max(a,b,c,d))
+        result = min(result, max(a,b,c,d))
 print(result)
