@@ -16,7 +16,9 @@ def distance(lst):
     return dis
 
 result = 0
-for i in range(1, N):
-    temp_arr = arr[:i] + [1] + arr[i:]
-    result = max(result, distance(temp_arr))
+for i in range(N): # 빈자리에만 변경!!!
+    if arr[i] == 0:
+        arr[i] = 1
+        result = max(result, distance(arr))
+        arr[i] = 0
 print(result)
