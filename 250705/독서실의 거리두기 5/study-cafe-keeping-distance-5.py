@@ -16,7 +16,7 @@ def distance(lst):
     return dis
 
 result = 0
-for i in range(N):
+for i in range(1, N):
     temp_arr = arr[:i] + [1] + arr[i:]
     result = max(result, distance(temp_arr))
 print(result)
