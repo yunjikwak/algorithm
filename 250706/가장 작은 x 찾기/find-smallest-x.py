@@ -4,8 +4,11 @@ input = sys.stdin.readline
 N = int(input())
 arr = [tuple(map(int, input().split())) for _ in range(N)]
 
+a,b = arr[0]
+start = a//2
+end = b//2 + 1
 
-for i in range(1, 11):
+for i in range(start, end):
     val = i
     check = True
     for j in range(N):
