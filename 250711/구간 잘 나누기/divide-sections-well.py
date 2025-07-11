@@ -8,7 +8,7 @@ start = max(arr)
 end = sum(arr)
 
 for standard in range(start, end+1):
-    cnt = 0
+    cnt = 1
     internal_sum = 0
     for a in arr:
         internal_sum += a
@@ -16,6 +16,6 @@ for standard in range(start, end+1):
             continue
         internal_sum = a
         cnt += 1
-    if cnt ==  M-1:
+    if cnt <= M:
         print(standard)
         break
