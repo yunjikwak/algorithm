@@ -5,7 +5,7 @@ N, L = map(int, input().split())
 arr = list(map(int, input().split()))
 
 # H 이상을 하려면 몇 개의 수를 올려야하는가
-for h in range(max(arr), min(arr)-1, -1):
+for h in range(max(arr), 0, -1):
     cnt = 0
     up = 0
     for a in arr:
