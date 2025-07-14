@@ -12,17 +12,16 @@ def isIntersecting(a,b,c,d):
 
 result = False
 for i in range(N):
+    tmp = arr[:i] + arr[i+1:]
     check = True
-    for j in range(N):
-        if i == j:
-            continue
+    for j in range(N-1):
         x1,x2,x3,x4 = 0,0,0,0
-        if i == 0:
-            x1,x2 = arr[0]
-            x3,x4 = arr[N-1]
+        if j == 0:
+            x1,x2 = tmp[0]
+            x3,x4 = tmp[N-2]
         else:
-            x1,x2 = arr[i-1]
-            x3,x4 = arr[i]
+            x1,x2 = tmp[j-1]
+            x3,x4 = tmp[j]
     
         if isIntersecting(x1,x2,x3,x4):
             continue
