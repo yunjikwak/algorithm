@@ -5,7 +5,7 @@ N = int(input())
 score = list(tuple(input().split()) for _ in range(N))
 
 a, b = 0, 0
-first = None
+first = 'AB'
 cnt = 0
 for c, s in score:
     s = int(s)
