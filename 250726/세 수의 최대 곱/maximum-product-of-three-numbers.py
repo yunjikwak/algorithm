@@ -1,0 +1,15 @@
+import sys
+input = sys.stdin.readline
+
+N = int(input())
+arr = list(map(int, input().split()))
+
+# 양 3 or 양1 음2
+# 모두 음 -> 절대값 낮은 것
+
+arr.sort()
+
+result = -sys.maxsize
+result = max(result, arr[-1]*arr[-2]*arr[-3])
+result = max(result, arr[-1]*arr[0]*arr[1])
+print(result)
