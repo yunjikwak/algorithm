@@ -17,13 +17,13 @@ for i in range(N):
         odd_cnt += 1
 
 if even_cnt == odd_cnt:
-    print(even_cnt*2)
+    print(odd_cnt*2)
 elif even_cnt > odd_cnt:
-    print(odd_cnt + 1)
+    print(odd_cnt*2 + 1)
 else:
     result = even_cnt * 2
     odd_cnt -= even_cnt
-    
+
     quotient = odd_cnt // 3
     remainder = odd_cnt % 3 
 
