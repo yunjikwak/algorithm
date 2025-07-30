@@ -32,4 +32,7 @@ for i in range(N):
             result += 1
             break
 
+if N == 1 and M == 1:
+    result += 2
+
 print(result)
