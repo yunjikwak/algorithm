@@ -23,7 +23,7 @@ for i in range(N):
     cur_sum = 0
     for j in range(M-2):
         cur_sum = sum(graph[i][j:j+3])
-    result = max(result, cur_sum)
+        result = max(result, cur_sum)
 
 # |
 # |
