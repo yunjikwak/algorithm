@@ -22,7 +22,7 @@ def search(K, x, y):
     return gold_cnt
 
 max_gold = 0
-for k in range(N//2+2):
+for k in range(2*N):
     cost = k*k + (k+1)*(k+1)
     for i in range(N):
         for j in range(N):
