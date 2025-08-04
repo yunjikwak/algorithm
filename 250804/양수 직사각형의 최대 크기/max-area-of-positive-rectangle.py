@@ -13,7 +13,7 @@ def is_valid(x1,y1,x2,y2):
 def is_include_negative(r1,c1,r2,c2):
     for r in range(r1, r2):
         for c in range(c1, c2):
-            if graph[r][c] < 0:
+            if graph[r][c] <= 0: # 양수!!! 0 이상
                 return True
     return False
 
