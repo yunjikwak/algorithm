@@ -28,9 +28,10 @@ def search_marble(arr):
 for _ in range(T):
     n_cnt = [[0] * N for _ in range(N)]
     marble = search_marble(cnt)
+    # print(cnt)
 
     for x, y in marble:
-        cur = arr[x][y]
+        cur = 0
         a, b = x, y
         for i in range(4):
             nx = x+dx[i]
@@ -40,6 +41,7 @@ for _ in range(T):
                 a, b = nx, ny
         n_cnt[a][b] += 1
 
+    # print(n_cnt)
     for r in range(N):
         for c in range(N):
             if n_cnt[r][c] > 1:
