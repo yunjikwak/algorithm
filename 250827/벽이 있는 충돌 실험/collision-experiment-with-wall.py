@@ -48,9 +48,9 @@ for _ in range(T):
                 # n_cnt[nx][ny][0] += 1
                 # n_cnt[nx][ny][1] = d
             else:
-                if (nx,ny) not in n_cnt:
-                    n_cnt[(nx, ny)] = []
-                n_cnt[(nx, ny)].append(opposite(d))
+                if (x,y) not in n_cnt:
+                    n_cnt[(x, y)] = []
+                n_cnt[(x, y)].append(opposite(d))
                 # n_cnt[x][y][0] += 1
                 # n_cnt[x][y][1] = opposite(d)
 
