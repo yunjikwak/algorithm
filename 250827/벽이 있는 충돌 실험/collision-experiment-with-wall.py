@@ -26,7 +26,8 @@ def opposite(d):
 
 for _ in range(T):
     N, M = map(int, input().split())
-    cnt = [[[0,0] for _ in range(N)] for _ in range(N)]
+    marble = []
+    # cnt = [[[0,0] for _ in range(N)] for _ in range(N)]
 
     for _ in range(M):
         x, y, d = input().split()
@@ -34,14 +35,14 @@ for _ in range(T):
         elif d == 'D': d = 1
         elif d == 'L': d = 2
         elif d == 'R': d = 3
-        cnt[int(x)-1][int(y)-1] = [1, d]
+        # cnt[int(x)-1][int(y)-1] = [1, d]
+        marble.append([int(x)-1, int(y)-1, d])
 
-    for _ in range(2 * N):
-        n_cnt = [[[0,0] for _ in range(N)] for _ in range(N)]
-        marble = search_marble(cnt)
-
+    for _ in range(2 * N): # 왜 2 * N -> 구슬의 한 줄 왕복이 모든 경우의 수임 
         if not marble:
             break
+
+        n_cnt = [[[0,0] for _ in range(N)] for _ in range(N)]
 
         for x, y, d in marble:
             nx = x+dx[d]
@@ -54,26 +55,13 @@ for _ in range(T):
                 n_cnt[x][y][0] += 1
                 n_cnt[x][y][1] = opposite(d)
 
-        changed = False
-        new = [[[0,0] for _ in range(N)] for _ in range(N)]
-
+        n_marble = []
         for r in range(N):
             for c in range(N):
-                if n_cnt[r][c][0] > 1:
-                    continue
-                elif n_cnt[r][c][0] == 1:
-                    new[r][c][0] = 1
-                    new[r][c][1] = n_cnt[r][c][1]
-                else:
-                    new[r][c] = [0,0]
+                if n_cnt[r][c][0] == 1:
+                    nd = n_cnt[r][c][1]
+                    n_marble.append([r, c, nd])
 
-        if new == cnt:
-            break
-        cnt = new
+        marble = n_marble
         
-    result = 0
-    for i in range(N):
-        for j in range(N):
-            if cnt[i][j][0] == 1:
-                result += 1
-    print(result)
+    print(len(marble))
