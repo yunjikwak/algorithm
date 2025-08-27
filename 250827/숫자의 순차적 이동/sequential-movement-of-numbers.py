@@ -16,7 +16,6 @@ for _ in range(M):
     for i in range(N):
         for j in range(N):
             seq[arr[i][j]-1] = (i, j)
-    print(seq)
 
     for x, y in seq:
         max_num = 0
@@ -29,10 +28,11 @@ for _ in range(M):
                 max_num = arr[nx][ny]
                 a = nx
                 b = ny
-        print(arr[x][y], arr[a][b])
         tmp = arr[x][y]
         arr[x][y] = max_num
         arr[a][b] = tmp
+        seq[tmp-1] = (a, b)
+        seq[max_num-1] = (x, y) 
 
 for row in arr:
     print(*row)
