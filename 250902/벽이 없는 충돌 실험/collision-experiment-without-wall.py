@@ -21,24 +21,35 @@ def cal_time(m1, m2):
     vx2, vy2 = dx[d2], dy[d2]
 
     if vx1 == vx2 and vy1 == vy2: # 평행 이동
-        return None  
+        return None
+    
+    # t초 후 좌표가 같은 경우
+        # nx = x1 + v * t
+        # x1 + v1*t = x2 + v2*t
+        # t = (x2 - x1) / (vx1 - vx2)
 
-    tx = None
-    ty = None
-
-    if vx1 != vx2:
+    if vx1 == vx2:
+        tx = None
+    else:
         tx = (x2 - x1) / (vx1 - vx2)
-    if vy1 != vy2:
+    if vy1 == vy2:
+        ty = None
+    else:
         ty = (y2 - y1) / (vy1 - vy2)
 
-    if tx is not None and ty is not None:
-        if tx == ty and tx > 0:
-            return tx
-    elif tx is not None and vy1 == vy2 and tx > 0:
-        return tx
-    elif ty is not None and vx1 == vx2 and ty > 0:
-        return ty
-    return None
+    if tx is None: # x축 이동 동일
+        t = ty
+    elif ty is None:
+        t = tx
+    elif tx == ty:
+        t = tx
+    else:
+        return None
+
+    if t <= 0:
+        return None
+
+    return t
 
 T = int(input())
 for _ in range(T):
@@ -66,17 +77,34 @@ for _ in range(T):
     cnt.sort()
 
     is_valid = [True] * N
+    
     last_t = -1
+    idx = 0
+    while idx < len(cnt):
+        t = cnt[idx][0]
+        cur = []
 
-    for t, i, j in cnt:
-        if is_valid[i] and is_valid[j]:
-            last_t = t
+        while idx < len(cnt) and cnt[idx][0] == t:
+            cur.append(cnt[idx])
+            idx += 1
 
-            w1, num1 = marble[i][2], marble[i][4]
-            w2, num2 = marble[j][2], marble[j][4]
+        involved = set()
+        for _, i, j in cur:
+            if is_valid[i] and is_valid[j]:
+                involved.add(i)
+                involved.add(j)
 
-            if (w1 > w2) or (w1 == w2 and num1 > num2):
-                is_valid[j] = False
-            else:
-                is_valid[i] = False
+        if not involved:
+            continue
+
+        involved = list(involved)
+        involved.sort(key=lambda k: (marble[k][2], marble[k][4])) 
+        survivor = involved[-1]
+
+        for k in involved:
+            if k != survivor:
+                is_valid[k] = False
+
+        last_t = T
+        
     print(int(last_t) if last_t != -1 else -1)
