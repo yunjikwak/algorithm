@@ -2,7 +2,7 @@ N, M = map(int, input().split())
 arr = [list(map(int, input().split())) for _ in range(N)]
 
 def in_range(x, y):
-    return 0<=x<N and 0<=y<N
+    return 0<=x<N and 0<=y<M
 
 def can_go(x, y):
     if not in_range(x, y):
