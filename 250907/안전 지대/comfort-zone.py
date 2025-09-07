@@ -30,8 +30,7 @@ def dfs(x, y, k):
             continue
 
         if arr[nx][ny] > k:
-            cnt += 1
-            dfs(nx, ny, k)
+            cnt += dfs(nx, ny, k)
     return cnt
 
 max_region = []
