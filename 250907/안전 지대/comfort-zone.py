@@ -34,7 +34,7 @@ def dfs(x, y, k):
     return cnt
 
 max_region = []
-cur = 0
+cur = 1
 for k in range(start, end+1):
     cur_region = []
     visited = [[False for _ in range(M)] for _ in range(N)]
