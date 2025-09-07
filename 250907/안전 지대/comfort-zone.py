@@ -1,7 +1,7 @@
 N, M = map(int, input().split())
 arr = [list(map(int, input().split())) for _ in range(N)]
 
-start = float('inf')
+start = 1
 end = float('-inf')
 
 for i in range(N):
