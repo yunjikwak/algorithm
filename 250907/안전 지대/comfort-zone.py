@@ -1,7 +1,7 @@
 N, M = map(int, input().split())
 arr = [list(map(int, input().split())) for _ in range(N)]
 
-start = 1
+start = float('inf')
 end = float('-inf')
 
 for i in range(N):
@@ -10,6 +10,9 @@ for i in range(N):
         if cur < start: start = cur
         if cur > end: end = cur
 
+if start == end:
+    start = 1
+
 dxs = [-1, 1, 0, 0]
 dys = [0, 0, -1, 1]
 
@@ -17,8 +20,6 @@ def in_range(x, y):
     return 0<=x<N and 0<=y<M
 
 def dfs(x, y, k):
-    global visited
-
     visited[x][y] = True
     cnt = 1
     
