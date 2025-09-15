@@ -26,6 +26,9 @@ def recur(num):
                 break
         if not ok:
             return
+        else:
+            result = max(result, len(store))
+
 
     if num == N:
         # print(store)
@@ -33,7 +36,6 @@ def recur(num):
         return
     
     for select in range(num, len(line)):
-        # print("select", select, num)
         store.append(select)
         recur(select+1)
         store.pop()
