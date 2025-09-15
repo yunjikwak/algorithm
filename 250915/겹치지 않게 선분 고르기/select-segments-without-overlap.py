@@ -10,11 +10,7 @@ store = []
 def recur(num):
     global result
 
-    if num == N:
-        # print(store)
-        result = max(result, len(store))
-        return
-    elif len(store) >= 2:
+    if len(store) >= 2:
         nl, nr = line[store[-1]]
         ok = True
         for i in range(len(store)-1):
@@ -30,6 +26,11 @@ def recur(num):
                 break
         if not ok:
             return
+
+    if num == N:
+        # print(store)
+        result = max(result, len(store))
+        return
     
     for select in range(num, len(line)):
         # print("select", select, num)
