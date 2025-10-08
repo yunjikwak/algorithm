@@ -27,18 +27,17 @@ def can(a, b, num):
 def bt(x, y):
     global result
     cur_num, d = arr[x][y]
-    result = max(result, len(answer) + 1)
+
+    result = max(result, len(answer)+1)
 
     for i in range(1, N):
         nx, ny = x+dx[d]*i, y+dy[d]*i
-        if not can(nx, ny, cur_num):
-            # result = max(result, len(answer))
-            # print(answer)
-            return
-        
-        answer.append((nx, ny))
-        bt(nx, ny)
-        answer.pop()
+        if can(nx, ny, cur_num):
+            answer.append((nx, ny))
+            bt(nx, ny)
+            answer.pop()
+        else:
+            break
 
     return
 
