@@ -10,14 +10,12 @@ result = 10000*100
 def choose(cur_idx):
     global result
     if len(answer) == N-1:
-        if visited[0] == True:
-            return
-        else:
-            answer.append(arr[cur_idx][0])
-            result = min(result, sum(answer))
+        if arr[cur_idx][0] > 0:
+            total_cost = sum(answer) + arr[cur_idx][0]
+            result = min(result, total_cost)
         return
     
-    for i in range(N):
+    for i in range(1, N):
         if visited[i] or arr[cur_idx][i] == 0:
             continue
         
