@@ -39,7 +39,7 @@ def choose(idx):
     
     for i in range(idx, len(stone)):
         remove.append(stone[i])
-        choose(idx+1)
+        choose(i+1)
         remove.pop()
     return
 
