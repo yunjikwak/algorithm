@@ -24,7 +24,7 @@ def bfs(x, y):
     while q:
         a, b = q.popleft()
         
-        for i in range(N):
+        for i in range(4):
             nx,ny = a+dx[i], b+dy[i]
 
             if in_range(nx, ny) and arr[nx][ny] == 1:
