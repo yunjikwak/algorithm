@@ -3,7 +3,7 @@ arr = []
 for _ in range(N):
     arr.append(list(map(int, input().split())))
 
-dp = [[1] * M for _ in range(N)]
+dp = [[0] * M for _ in range(N)]
 
 dp[0][0] = 1
 
@@ -16,9 +16,13 @@ def init():
 for i in range(N):
     for j in range(M):
         cur = arr[i][j]
+
         for k in range(i):
             for t in range(j):
+                if dp[k][t] == 0:
+                    continue
                 if arr[k][t] < cur:
+                    # print(i,j, cur, k, t, dp[i][j], dp[k][t])
                     dp[i][j] = max(dp[k][t]+1, dp[i][j])
 
 answer = 0
