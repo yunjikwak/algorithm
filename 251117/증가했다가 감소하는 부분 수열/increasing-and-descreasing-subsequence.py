@@ -1,40 +1,18 @@
 N = int(input())
 arr = list(map(int, input().split()))
 
-dp = [[False, 1] for _ in range(N)]
-
-# for i in range(N):
-#     status = dp[i][0]
-#     for j in range(i):
-#         if status == False:
-#             if arr[j] < arr[i]:
-#                 dp[i][1] = max(dp[i][1], dp[j]+1)
-#             else:
-#                 if dp[i][1] < dp[j]+1:
-#                     dp[i][0] = True
-#                     dp[i][1] = max(dp[i][1], dp[j]+1)
-#         else:
-#             if arr[j] > arr[i]:
-#                 dp[i][1] = max(dp[i], dp[j]+1)
+dp = [[1, 1] for _ in range(N)] # 증 - 감
 
 for i in range(N):
     for j in range(i):
-        status = dp[j][0]
-        
-        if status == False:
-            if arr[j] < arr[i]:
-                dp[i][1] = max(dp[i][1], dp[j][1]+1)
-            else:
-                if dp[i][1] < dp[j][1]+1:
-                    dp[i][0] = True
-                    dp[i][1] = max(dp[i][1], dp[j][1]+1)
-        else:
-            if arr[j] > arr[i]:
-                dp[i][1] = max(dp[i][1], dp[j][1] + 1)
-                dp[i][0] = True
+        if arr[j] < arr[i]:
+            dp[i][0] = max(dp[i][0], dp[j][0] + 1)
+        elif arr[j] > arr[i]:
+            dp[i][1] = max(dp[i][1], dp[j][0] + 1) # 증 -> 감
+            dp[i][1] = max(dp[i][1], dp[j][1] + 1) # 감 -> 감
 
 result = 0
-for status, length in dp:
-    result = max(result, length)
+for i in range(N):
+    result = max(result, dp[i][0], dp[i][1])
 
 print(result)
