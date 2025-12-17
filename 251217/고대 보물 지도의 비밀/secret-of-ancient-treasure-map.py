@@ -6,7 +6,7 @@ dp = [INF] * (K + 1)
 result = INF
 
 for num in arr:
-    next_dp = [0] * (K + 1)
+    next_dp = [INF] * (K + 1)
 
     if num > 0:
         for k in range(K + 1):
