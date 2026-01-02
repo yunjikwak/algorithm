@@ -22,7 +22,7 @@ def calc_all(nums):
 
 
 select = []
-result = 0
+result = -float('inf')
 def back(idx):
     global result
     
