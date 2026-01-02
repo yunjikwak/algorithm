@@ -10,8 +10,7 @@ def calc(a, b, op):
 
 def calc_all(nums):
     cur = nums[0]
-    ch = arr[1]
-    idx = 2
+    idx = 1
 
     for i in range(idx, len(arr)):
         if i % 2 == 0: # 홀수
