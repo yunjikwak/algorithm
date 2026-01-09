@@ -12,13 +12,13 @@ def calc_xor(lst):
 
 def bt(idx):
     global result
-    
+
     if len(tmp) == M:
         result = max(result, calc_xor(tmp))
         return
     
     for i in range(idx, N):
-        tmp.append(i)
+        tmp.append(arr[i])
         bt(i+1)
         tmp.pop()
     return
