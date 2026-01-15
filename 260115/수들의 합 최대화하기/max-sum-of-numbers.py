@@ -1,30 +1,21 @@
 N = int(input())
 arr = [list(map(int, input().split())) for _ in range(N)]
 
-visited_r = [False] * N
 visited_c = [False] * N
 
 result = 0
-def choose(cnt, cur):
+def choose(row, cur):
     global result
 
-    if cnt == N+1:
+    if row == N:
         result = max(result, cur)
         return
 
-    for i in range(N):
-        if visited_r[i]:
-            continue
-        
-        for j in range(N):
-            if visited_c[j]:
-                continue
-            
-            visited_r[i] = True
+    for j in range(N):
+        if not visited_c[j]:
             visited_c[j] = True
-            choose(cnt+1, cur+arr[i][j])
-            visited_r[i] = False
+            choose(row + 1, cur + arr[row][j])
             visited_c[j] = False
 
-choose(1, 0)
+choose(0, 0)
 print(result)
