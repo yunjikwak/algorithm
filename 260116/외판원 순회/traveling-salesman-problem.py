@@ -8,8 +8,8 @@ def choose(row, cnt, cur):
     global result
 
     if cnt == N-1:
-        cur += arr[row][0]    
-        result = min(result, cur)
+        if arr[row][0] != 0: 
+            result = min(result, cur + arr[row][0])
         return
 
     for i in range(1, N):
