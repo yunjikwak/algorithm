@@ -1,51 +1,65 @@
 import sys
-sys.setrecursionlimit(200000)
+
 input = sys.stdin.readline
-
-N = input().strip()
-
-dp = {} # key: (idx, rem, is_tight, is_start), value: 경우의 수
-
-candidates = [0, 1, 2, 4, 5, 7, 8]
+S = input().strip()
+L = len(S)
 MOD = 10**9 + 7
 
-# rem : 지금까지의 3으로 나눈 나머지
-def solve(idx, rem, is_tight, is_start):
-    if idx == len(N):
-        # 숫자 존재 & 3배수 아님
-        if is_start and rem != 0:
-            return 1
-        return 0
+allowed = [0, 1, 2, 4, 5, 7, 8]
 
-    cur = (idx, rem, is_tight, is_start)
-    if cur in dp:
-        return dp[cur]
+total_n_mod = 0
+for ch in S:
+    total_n_mod = (total_n_mod * 10 + int(ch)) % MOD
 
-    if is_tight:
-        limit = int(N[idx])
-    else:
-        limit = 9
+no_clap_count = 0
 
-    cnt = 0
-    for num in candidates:
-        if num > limit:
-            break
-
-        n_tight = is_tight and num == limit
-        n_start = is_start or num != 0
-        if not n_start:
-            n_rem = 0
-        else:
-            n_rem = (rem + num) % 3
+if L > 1:
+    current_dp = [0, 3, 3] 
+    
+    no_clap_count = (no_clap_count + current_dp[1] + current_dp[2]) % MOD
+    
+    for _ in range(2, L):
+        next_dp = [0, 0, 0]
+        next_dp[0] = (current_dp[0]*1 + current_dp[1]*3 + current_dp[2]*3) % MOD
+        next_dp[1] = (current_dp[0]*3 + current_dp[1]*1 + current_dp[2]*3) % MOD
+        next_dp[2] = (current_dp[0]*3 + current_dp[1]*3 + current_dp[2]*1) % MOD
         
-        cnt = (cnt + solve(idx+1, n_rem, n_tight, n_start)) % MOD
+        current_dp = next_dp
+        no_clap_count = (no_clap_count + current_dp[1] + current_dp[2]) % MOD
 
-    dp[cur] = cnt
-    return cnt
+loose_dp = [0, 0, 0]
 
-# 숫자 줄이기, 기억해놓기
-result = 0
-for ch in N:
-    result = (result * 10 + int(ch)) % MOD
-no_clap = solve(0, 0, True, False)
-print((result - no_clap + MOD) % MOD)
+tight_rem = 0
+tight_valid = True
+
+for i in range(L):
+    limit = int(S[i])
+    next_loose_dp = [0, 0, 0]
+    
+    next_loose_dp[0] = (loose_dp[0]*1 + loose_dp[1]*3 + loose_dp[2]*3) % MOD
+    next_loose_dp[1] = (loose_dp[0]*3 + loose_dp[1]*1 + loose_dp[2]*3) % MOD
+    next_loose_dp[2] = (loose_dp[0]*3 + loose_dp[1]*3 + loose_dp[2]*1) % MOD
+            
+    if tight_valid:
+        for digit in allowed:
+            if digit >= limit:
+                break 
+            if i == 0 and digit == 0:
+                continue
+            
+            new_rem = (tight_rem + digit) % 3
+            next_loose_dp[new_rem] = (next_loose_dp[new_rem] + 1) % MOD
+    
+    loose_dp = next_loose_dp
+    
+    if limit in [3, 6, 9]:
+        tight_valid = False
+    else:
+        tight_rem = (tight_rem + limit) % 3
+
+no_clap_count = (no_clap_count + loose_dp[1] + loose_dp[2]) % MOD
+
+if tight_valid and tight_rem != 0:
+    no_clap_count = (no_clap_count + 1) % MOD
+
+print((total_n_mod - no_clap_count + MOD) % MOD)
